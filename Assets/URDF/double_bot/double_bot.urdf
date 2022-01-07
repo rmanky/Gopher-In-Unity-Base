@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="double_bot">
+
+ <inertial>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <mass value="0" />
+  <inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+ </inertial>
+
+ <link name="double_bot/base_link"/>
+
+ <link name="double_bot/chassis_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0036 0.0 0.0014"/>
+      <mass value="70.1294"/>
+      <inertia ixx="1.225" ixy="0.0099" ixz="0.0062" iyy="1.2853" iyz="-0.0034" izz="0.987"/>
+    </inertial>
+  </link>
+  <joint name="double_bot/base_joint" type="fixed">
+    <parent link="double_bot/base_link"/>
+    <child link="double_bot/chassis_link"/>
+  </joint>
+
+ <link name="double_bot/r_wheel_link">
+  <visual>
+   <origin xyz="0.355438 -1.40953e-17 0.126721" rpy="0 -0 1.5708" />
+   <geometry>
+    <mesh filename="package://wheel_right.stl"/>
+   </geometry>
+   <material name="wheel_right_material">
+    <color rgba="0.498039 0.498039 0.498039 1.0"/>
+   </material>
+  </visual>
+  <collision>
+   <origin xyz="0.355438 -1.40953e-17 0.126721" rpy="0 -0 1.5708" />
+   <geometry>
+    <mesh filename="package://wheel_right.stl"/>
+   </geometry>
+   <material name="wheel_right_material">
+    <color rgba="0.498039 0.498039 0.498039 1.0"/>
+   </material>
+  </collision>
+ </link>
+ <joint name="double_bot/r_wheel_joint" type="continuous">
+  <parent link="double_bot/chassis_link"/>
+  <child link="double_bot/r_wheel_link"/>
+  <axis xyz="0 1 0"/>
+  <limit effort="8.85" velocity="34.8"/>
+ </joint>
+ 
+ <link name="double_bot/l_wheel_link">
+  <visual>
+   <origin xyz="1.38778e-17 6.26942e-18 0.126721" rpy="1.5708 1.5708 0" />
+   <geometry>
+    <mesh filename="package://wheel_left.stl"/>
+   </geometry>
+   <material name="wheel_left_material">
+    <color rgba="0.498039 0.498039 0.498039 1.0"/>
+   </material>
+  </visual>
+  <collision>
+   <origin xyz="1.38778e-17 6.26942e-18 0.126721" rpy="1.5708 1.5708 0" />
+   <geometry>
+    <mesh filename="package://wheel_left.stl"/>
+   </geometry>
+   <material name="wheel_left_material">
+    <color rgba="0.498039 0.498039 0.498039 1.0"/>
+   </material>
+  </collision>
+ </link>
+ <joint name="double_bot/l_wheel_joint" type="continuous">
+  <parent link="double_bot/chassis_link"/>
+  <child link="double_bot/l_wheel_link"/>
+  <axis xyz="0 1 0"/>
+  <limit effort="8.85" velocity="34.8"/>
+ </joint>
+
+ <link name="double_bot/right_connector_link">
+  <visual>
+   <origin xyz="0.1905 -4.93945e-18 0.126721" rpy="0 -0 -1.5708" />
+   <geometry>
+    <mesh filename="package://right_connector.stl"/>
+   </geometry>
+   <material name="right_connector_material">
+    <color rgba="0.980392 0.713725 0.00392157 1.0"/>
+   </material>
+  </visual>
+  <collision>
+   <origin xyz="0.1905 -4.93945e-18 0.126721" rpy="0 -0 -1.5708" />
+   <geometry>
+    <mesh filename="package://right_connector.stl"/>
+   </geometry>
+   <material name="right_connector_material">
+    <color rgba="0.980392 0.713725 0.00392157 1.0"/>
+   </material>
+  </collision>
+ </link> 
+ <joint name="double_bot/right_connector_joint" type="fixed">
+  <parent link="double_bot/chassis_link"/>
+  <child link="double_bot/right_connector_link"/>
+  <axis xyz="0 0 0"/>
+ </joint>
+
+ <link name="double_bot/left_connector_link">
+  <visual>
+   <origin xyz="-1.38778e-17 0 0.126721" rpy="0 -0 -1.5708" />
+   <geometry>
+    <mesh filename="package://left_connector.stl"/>
+   </geometry>
+   <material name="left_connector_material">
+    <color rgba="0.980392 0.713725 0.00392157 1.0"/>
+   </material>
+  </visual>
+  <collision>
+   <origin xyz="-1.38778e-17 0 0.126721" rpy="0 -0 -1.5708" />
+   <geometry>
+    <mesh filename="package://left_connector.stl"/>
+   </geometry>
+   <material name="left_connector_material">
+    <color rgba="0.980392 0.713725 0.00392157 1.0"/>
+   </material>
+  </collision>
+ </link>
+ <joint name="double_bot/left_connector_joint" type="fixed">
+  <parent link="double_bot/chassis_link"/>
+  <child link="double_bot/left_connector_link"/>
+  <axis xyz="0 0 0"/>
+ </joint>
+
+ <link name="double_bot/center_connector_link">
+  <visual>
+   <origin xyz="-1.38778e-17 5.63542e-18 0.126721" rpy="0 -0 -1.5708" />
+   <geometry>
+    <mesh filename="package://center_connector.stl"/>
+   </geometry>
+   <material name="center_connector_material">
+    <color rgba="0.615686 0.811765 0.929412 1.0"/>
+   </material>
+  </visual>
+  <collision>
+   <origin xyz="-1.38778e-17 5.63542e-18 0.126721" rpy="0 -0 -1.5708" />
+   <geometry>
+    <mesh filename="package://center_connector.stl"/>
+   </geometry>
+   <material name="center_connector_material">
+    <color rgba="0.615686 0.811765 0.929412 1.0"/>
+   </material>
+  </collision>
+ </link>
+ <joint name="double_bot/center_connector_joint" type="fixed">
+  <parent link="double_bot/chassis_link"/>
+  <child link="double_bot/center_connector_link"/>
+  <axis xyz="0 0 0"/>
+ </joint>
+
+ <link name="double_bot/pole_link">
+  <visual>
+   <origin xyz="-0.0115921 1.13037e-17 0.126721" rpy="0 -0 1.5708" />
+   <geometry>
+    <mesh filename="package://pole.stl"/>
+   </geometry>
+   <material name="pole_material">
+    <color rgba="0.647059 0.647059 0.647059 1.0"/>
+   </material>
+  </visual>
+  <collision>
+   <origin xyz="-0.0115921 1.13037e-17 0.126721" rpy="0 -0 1.5708" />
+   <geometry>
+    <mesh filename="package://pole.stl"/>
+   </geometry>
+   <material name="pole_material">
+    <color rgba="0.647059 0.647059 0.647059 1.0"/>
+   </material>
+  </collision>
+ </link>
+ <joint name="double_bot/pole_joint" type="fixed">
+  <parent link="double_bot/chassis_link"/>
+  <child link="double_bot/pole_link"/>
+  <axis xyz="0 0 0"/>
+ </joint>
+
+ <link name="double_bot/iPad_link">
+  <visual>
+   <origin xyz="1.1006 -5.46352e-19 1.2475" rpy="0 -0 -1.5708" />
+   <geometry>
+    <mesh filename="package://ipad.stl"/>
+   </geometry>
+   <material name="ipad_material">
+    <color rgba="0.231373 0.380392 0.705882 1.0"/>
+   </material>
+  </visual>
+  <collision>
+   <origin xyz="1.1006 -5.46352e-19 1.2475" rpy="0 -0 -1.5708" />
+   <geometry>
+    <mesh filename="package://ipad.stl"/>
+   </geometry>
+   <material name="ipad_material">
+    <color rgba="0.231373 0.380392 0.705882 1.0"/>
+   </material>
+  </collision>
+ </link>
+ <joint name="double_bot/iPad_join" type="fixed">
+  <parent link="double_bot/chassis_link"/>
+  <child link="double_bot/iPad_link"/>
+  <axis xyz="0 0 0"/>
+ </joint>
+
+</robot>
